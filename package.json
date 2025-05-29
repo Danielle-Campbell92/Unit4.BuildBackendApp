@@ -1,0 +1,28 @@
+{
+  "name": "unit4.buildbackendapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:schema": "psql -d dmv -f dv/schema.sql",
+    "db:seed": "psql -d dmv -f db/seed.sql",
+    "db:reset": "npm run db:schema && npm run db:seed",
+    "dev": "node --watch --env-file=.env server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danielle-Campbell92/Unit4.BuildBackendApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Danielle-Campbell92/Unit4.BuildBackendApp/issues"
+  },
+  "homepage": "https://github.com/Danielle-Campbell92/Unit4.BuildBackendApp#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.0"
+  }
+}
