@@ -14,7 +14,12 @@ async function seedMovies() {
         {name: 'HBO MAX'},
         {name: 'Hulu'},
         {name: 'Crunchyroll'},
-        {name: 'Apple TV'}
+        {name: 'Apple TV'},
+        {name: 'Disney Plus'},
+        {name: 'Peacock'},
+        {name: 'Prime Video'},
+        {name: 'Youtube'},
+        {name: 'Tubi'}
     ];
 
     for (const platform of platforms){
@@ -26,7 +31,13 @@ async function seedMovies() {
         {name: 'The Last Showgirl', genre: 'drama', release_date_year: 2024},
         {name: 'Heretic', genre: 'horror', release_date_year: 2024},
         {name: 'Jujutsu Kaisen Zero', genre: 'anime', release_date_year: 2021},
-        {name: 'CODA', genre: 'drame', release_date_year: 2021}
+        {name: 'CODA', genre: 'drama', release_date_year: 2021},
+        {name: 'Nanny', genre: 'horror', release_date_year: 2022},
+        {name: 'Lion King', genre: 'animated', release_date_year: 1994},
+        {name: 'Genie', genre: 'comedy', release_date_year: 2023},
+        {name: 'Outrun', genre: 'drama', release_date_year: 2024},
+        {name: 'Wicked', genre: 'musical', release_date_year: 2024},
+
     ];
 
     for (const movie of movies){
