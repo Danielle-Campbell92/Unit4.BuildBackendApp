@@ -2,8 +2,8 @@ import {createPlatform} from "./queries/platforms.js";
 import {createMovie} from "./queries/movies.js";
 import client from "./client.js";
 
-import dotenv from 'dotenv';
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
 console.log("🌱 Database seeded.");
 async function seedMovies() {
