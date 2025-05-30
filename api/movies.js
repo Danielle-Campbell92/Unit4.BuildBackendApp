@@ -1,5 +1,5 @@
 import express from "express";
-import { createMovie, getMovie, getMovies, deleteMovie, updateMovie} from "../db/queries/movies";
+import { createMovie, getMovie, getMovies, deleteMovie, updateMovie} from "../db/queries/movies.js";
 
 const router = express.Router();
 
@@ -36,11 +36,11 @@ router.route("/").post(async (req, res) => {
 router.route("/:id").delete(async (req, res) => {
     const id = req.params.id
     if(Number.isInteger(id) && id !=0){
-        return res.status(400).sendDate({error: "Please send a valid number"})
+        return res.status(400).send({error: "Please send a valid number"})
     }
     const deletes = await deleteMovie(id)
     if(!deletes){
-        res.status(404).send({error: "Platform not found"})
+        res.status(404).send({error: "Movie not found"})
     }
     res.status(204)
 })

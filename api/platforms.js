@@ -1,5 +1,5 @@
 import express from "express";
-import { getPlatforms, getPlatform, createPlatform, deletePlatform, updatePlatform } from "../db/queries/platforms";
+import { getPlatforms, getPlatform, createPlatform, deletePlatform, updatePlatform } from "../db/queries/platforms.js";
 const router = express.Router();
 
 
@@ -35,7 +35,7 @@ router.route("/").post(async (req, res) => {
 router.route("/:id").delete(async (req, res) => {
     const id = req.params.id
     if(Number.isInteger(id) && id !=0){
-        return res.status(400).sendDate({error: "Please send a valid number"})
+        return res.status(400).send({error: "Please send a valid number"})
     }
     const deletes = await deletePlatform(id)
     if(!deletes){

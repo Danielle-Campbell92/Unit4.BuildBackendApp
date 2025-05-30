@@ -35,7 +35,7 @@ export async function createMovie({ name, genre, release_date_year}) {
     SET name = $1, genre = $2, release_date_year = $3
     WHERE id = $4
     RETURNING *;`
-    const {rows: movie} = await client.query(sql, [id, name, genre, release_date_year]);
+    const {rows: movie} = await client.query(sql, [name, genre, release_date_year, id]);
     console.log(movie);
     return movie[0];
   }
@@ -45,5 +45,5 @@ export async function createMovie({ name, genre, release_date_year}) {
     const sql = `
     DELETE FROM movies WHERE id = $1 RETURNING *;`
     const {rows: movie} = await client.query(sql, [id]);
-    return platform;
+    return movie[0];
   }

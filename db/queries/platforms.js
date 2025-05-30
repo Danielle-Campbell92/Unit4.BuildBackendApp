@@ -35,7 +35,7 @@ export async function createPlatform({ name }) {
     SET name = $1
     WHERE id = $2
     RETURNING *;`
-    const {rows: platform} = await client.query(sql, [id, name]);
+    const {rows: platform} = await client.query(sql, [name, id]);
     console.log(platform);
     return platform[0];
   }
@@ -45,7 +45,7 @@ export async function createPlatform({ name }) {
     const sql = `
     DELETE FROM platforms WHERE id = $1 RETURNING *;`
     const {rows: platform} = await client.query(sql, [id]);
-    return platform;
+    return platform [0];
   }
 
 
