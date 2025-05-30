@@ -3,12 +3,13 @@ DROP TABLE IF EXISTS movies;
 
 CREATE TABLE platforms(
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE movies(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     genre TEXT NOT NULL,
-    release_date_year INTEGER NOT NULL
+    release_date_year INTEGER NOT NULL,
+    platform_id INTEGER REFERENCES platforms(id) ON DELETE SET NULL
 )
