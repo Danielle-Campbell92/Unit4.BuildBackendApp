@@ -1,5 +1,5 @@
+DROP TABLE IF EXISTS moviese CASCADE;
 DROP TABLE IF EXISTS platforms CASCADE;
-DROP TABLE IF EXISTS movies;
 
 CREATE TABLE platforms(
     id SERIAL PRIMARY KEY,
@@ -11,6 +11,5 @@ CREATE TABLE movies(
     name TEXT NOT NULL,
     genre TEXT NOT NULL,
     release_date_year INTEGER NOT NULL,
-    platform_id INTEGER REFERENCES platforms(id) ON DELETE SET NULL,
-    UNIQUE(name, release_date_year)
+    platform_id INTEGER REFERENCES platforms(id) ON DELETE SET NULL
 )

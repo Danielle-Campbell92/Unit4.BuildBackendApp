@@ -25,11 +25,11 @@ router.route("/").post(async (req, res) => {
     if(!req.body){
         return res.status(400).send({error: "Missing req.body"})
     }
-    const {name, genre, release_date_year} = req.body
-    if(!name || !genre || !release_date_year){
+    const {name, genre, release_date_year, platform_id} = req.body
+    if(!name || !genre || !release_date_year || !platform_id){
         return res.status(400).send({error: "Missing require params"})
     } 
-    const movie = await createMovie({name, genre, release_date_year})
+    const movie = await createMovie({name, genre, release_date_year, platform_id})
     res.status(201).send(movie)
 })
 
@@ -42,7 +42,7 @@ router.route("/:id").delete(async (req, res) => {
     if(!deletes){
         res.status(404).send({error: "Movie not found"})
     }
-    res.status(204)
+    res.status(204).send()
 })
 
 router.route("/:id").put(async (req, res) => {
@@ -50,7 +50,7 @@ router.route("/:id").put(async (req, res) => {
     if(!req.body){
         return res.status(400).send({error: "Please send details"})
     }
-    const {name, genre, release_date_year} = req.body
+    const {name, genre, release_date_year, platform_id} = req.body
 
     if(!name){
         return res.status(400).send({error: "Missing rquired fields"})
@@ -62,7 +62,7 @@ router.route("/:id").put(async (req, res) => {
     if(!movie){
         return res.status(404).send({error: "Platform not found"})
     }
-    const updated = await updateMovie({id, name, genre, release_date_year})
+    const updated = await updateMovie({id, name, genre, release_date_year, platform_id})
     res.send(updated)
 
 })

@@ -8,12 +8,8 @@ dotenv.config();
 console.log("🌱 Database seeded.");
 async function seedMovies() {
     await client.connect()
-
-    // for(let i=0; i < movies.length; i++) {
-    //     // for (let j = 0; j < movies.length; j++) {
-    //     //     console.log(`platforms: ${platforms[i]} movies: ${movies[j]}`);
-    //     // }
-    // }
+    await client.query(`TRUNCATE TABLE movies RESTART IDENTITY CASCADE;`);
+    await client.query(`TRUNCATE TABLE platforms RESTART IDENTITY CASCADE;`);
 
     const platforms = [
         {name: 'Neflix'},
@@ -28,13 +24,14 @@ async function seedMovies() {
         {name: 'Tubi'}
     ];
 
-    for (const platform of platforms){
-        await createPlatform(platform);
-    }
+    for (const platform of platforms) {
+        const created = await createPlatform(platform);
+        console.log('Inserted platform:', created);
+      }
 
     const movies = [
         {name: 'Leave The World Behind', genre: 'horror', release_date_year: 2023, platform_id: 1},
-        {name: 'The Last Showgirl', genre: 'drama', release_date_year: 2024, platform: 2},
+        {name: 'The Last Showgirl', genre: 'drama', release_date_year: 2024, platform_id: 2},
         {name: 'Heretic', genre: 'horror', release_date_year: 2024, platform_id: 3},
         {name: 'Jujutsu Kaisen Zero', genre: 'anime', release_date_year: 2021, platform_id: 4},
         {name: 'CODA', genre: 'drama', release_date_year: 2021, platform_id: 5},
@@ -46,9 +43,15 @@ async function seedMovies() {
 
     ];
 
-    for (const movie of movies){
-        await createMovie(movie);
-    }
+   
+    for (const movie of movies) {
+        try {
+            const inserted = await createMovie(movie);
+            console.log('Inserted movie:', inserted);
+         }catch (err) {
+             console.error('Insert failed for:', movie.name, err);
+         }
+     }
 
     await client.end()
 }
