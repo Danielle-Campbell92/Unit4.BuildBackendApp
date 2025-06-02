@@ -14,14 +14,12 @@ export async function createMovie({ name, genre, release_date_year, platform_id}
   export async function getMovies(){
     const sql = `
     SELECT 
-      movies.*, 
-      platforms.name AS platform_name
+    movies.*, 
+    platforms.name AS platform_name
     FROM movies
     JOIN platforms ON movies.platform_id = platforms.id;
-  `;
+  `
   const { rows } = await client.query(sql);
-
-  // Transform flat results into nested structure
   const movies = rows.map(movie => ({
     id: movie.id,
     name: movie.name,
@@ -31,8 +29,7 @@ export async function createMovie({ name, genre, release_date_year, platform_id}
       id: movie.platform_id,
       name: movie.platform_name
     }
-  }));
-
+  }))
   return movies;
   }
 
@@ -40,16 +37,14 @@ export async function createMovie({ name, genre, release_date_year, platform_id}
   export async function getMovie(id){
     const sql = `
     SELECT 
-      movies.*, 
-      platforms.name AS platform_name
+    movies.*, 
+    platforms.name AS platform_name
     FROM movies
     JOIN platforms ON movies.platform_id = platforms.id
     WHERE movies.id = $1;
-  `;
+  `
   const { rows } = await client.query(sql, [id]);
-
   if (rows.length === 0) return null;
-
   const movie = rows[0];
   return {
     id: movie.id,
@@ -60,7 +55,7 @@ export async function createMovie({ name, genre, release_date_year, platform_id}
       id: movie.platform_id,
       name: movie.platform_name
     }
-  };
+  }
   }
 
   //update movie with id
