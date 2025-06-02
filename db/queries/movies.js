@@ -3,10 +3,10 @@ import client from "../client.js";
 
 
 //create movie
-export async function createMovie({ name, genre, release_date_year}) {
+export async function createMovie({ name, genre, release_date_year, platform_id}) {
     const sql = 
-    `INSERT INTO movies (name, genre, release_date_year) VALUES ($1, $2, $3) RETURNING *;`
-    const {rows: movie} = await client.query(sql, [name, genre, release_date_year]);
+    `INSERT INTO movies (name, genre, release_date_year, platform_id) VALUES ($1, $2, $3, $4) RETURNING *;`
+    const {rows: movie} = await client.query(sql, [name, genre, release_date_year, platform_id]);
     return movie[0];
   }
 
@@ -29,13 +29,13 @@ export async function createMovie({ name, genre, release_date_year}) {
   }
 
   //update movie with id
-  export async function updateMovie({id, name, genre, release_date_year}){
+  export async function updateMovie({id, name, genre, release_date_year, platform_id}){
     const sql = `
     UPDATE movies
-    SET name = $1, genre = $2, release_date_year = $3
-    WHERE id = $4
+    SET name = $1, genre = $2, release_date_year = $3, platform_id = $4
+    WHERE id = $5
     RETURNING *;`
-    const {rows: movie} = await client.query(sql, [name, genre, release_date_year, id]);
+    const {rows: movie} = await client.query(sql, [name, genre, release_date_year, platform_id, id]);
     console.log(movie);
     return movie[0];
   }

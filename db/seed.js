@@ -9,6 +9,12 @@ console.log("🌱 Database seeded.");
 async function seedMovies() {
     await client.connect()
 
+    // for(let i=0; i < movies.length; i++) {
+    //     // for (let j = 0; j < movies.length; j++) {
+    //     //     console.log(`platforms: ${platforms[i]} movies: ${movies[j]}`);
+    //     // }
+    // }
+
     const platforms = [
         {name: 'Neflix'},
         {name: 'HBO MAX'},
@@ -27,16 +33,16 @@ async function seedMovies() {
     }
 
     const movies = [
-        {name: 'Leave The World Behind', genre: 'horror', release_date_year: 2023},
-        {name: 'The Last Showgirl', genre: 'drama', release_date_year: 2024},
-        {name: 'Heretic', genre: 'horror', release_date_year: 2024},
-        {name: 'Jujutsu Kaisen Zero', genre: 'anime', release_date_year: 2021},
-        {name: 'CODA', genre: 'drama', release_date_year: 2021},
-        {name: 'Nanny', genre: 'horror', release_date_year: 2022},
-        {name: 'Lion King', genre: 'animated', release_date_year: 1994},
-        {name: 'Genie', genre: 'comedy', release_date_year: 2023},
-        {name: 'Outrun', genre: 'drama', release_date_year: 2024},
-        {name: 'Wicked', genre: 'musical', release_date_year: 2024},
+        {name: 'Leave The World Behind', genre: 'horror', release_date_year: 2023, platform_id: 1},
+        {name: 'The Last Showgirl', genre: 'drama', release_date_year: 2024, platform: 2},
+        {name: 'Heretic', genre: 'horror', release_date_year: 2024, platform_id: 3},
+        {name: 'Jujutsu Kaisen Zero', genre: 'anime', release_date_year: 2021, platform_id: 4},
+        {name: 'CODA', genre: 'drama', release_date_year: 2021, platform_id: 5},
+        {name: 'Nanny', genre: 'horror', release_date_year: 2022, platform_id: 6},
+        {name: 'Lion King', genre: 'animated', release_date_year: 1994, platform_id: 7},
+        {name: 'Genie', genre: 'comedy', release_date_year: 2023, platform_id: 8},
+        {name: 'Outrun', genre: 'drama', release_date_year: 2024, platform_id: 9},
+        {name: 'Wicked', genre: 'musical', release_date_year: 2024, platform_id: 10},
 
     ];
 
