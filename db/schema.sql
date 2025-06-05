@@ -13,3 +13,11 @@ CREATE TABLE movies(
     release_date_year INTEGER NOT NULL,
     platform_id INTEGER REFERENCES platforms(id) ON DELETE SET NULL
 )
+
+CREATE TABLE user(
+    id SERIAL PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
+)
